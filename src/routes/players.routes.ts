@@ -1,14 +1,11 @@
 import { Router } from 'express';
-import CreatedPlayerService from '../services/CreatedPlayerService';
-import ListedPlayerService from '../services/ListedPlayerService';
-import DeletedPlayerService from '../services/DeletedPlayerService';
-import UpdatedPlayerService from '../services/UpdatedPlayerService';
+import CreatedPlayerService from '../services/Players/CreatedPlayerService';
+import ListedPlayerService from '../services/Players/ListedPlayerService';
+import DeletedPlayerService from '../services/Players/DeletedPlayerService';
+import UpdatedPlayerService from '../services/Players/UpdatedPlayerService';
 import { id } from 'date-fns/locale';
 
-
-
 const playersRouter = Router();
-
 playersRouter.get('/', async (request, response) => {
     const listedPlayer = new ListedPlayerService();
     const players = await listedPlayer.execute()
@@ -25,7 +22,7 @@ playersRouter.post('/', async (request, response) => {
             age,
             nationality,
             position,
-            team,
+
         })
         console.log(name)
         console.log(age)
@@ -47,17 +44,18 @@ playersRouter.put('/:id', async (request, response) => {
         age: age,
         nationality: nationality,
         position: position,
-        team: team,
+
     })
     return response.json(players)
 })
 interface RouteDel {
     id: number,
 }
+
 playersRouter.delete('/:id', async (request, response) => {
     const { id } = request.params
     const deletedPlayer = new DeletedPlayerService()
-    await deletedPlayer.execute({ id })
+    await deletedPlayer.execute({ id: +id })
     return response.status(204).send({})
 })
 

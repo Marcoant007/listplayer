@@ -6,7 +6,8 @@ export class createTeamTable1607633306845 implements MigrationInterface {
         await queryRunner.query(`
      CREATE TABLE team (
         id serial,
-        name varchar(255)
+        name varchar(255),
+        awards varchar(255), 
     )`);
     }
 

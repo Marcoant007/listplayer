@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm'
-import PlayerRepository from '../repositories/PlayersRepository'
+import PlayerRepository from '../../repositories/PlayersRepository'
 
 interface Request {
     id: number,

@@ -10,7 +10,7 @@ export default class createPlayersTable1607627905636 implements MigrationInterfa
         age int,
         nationality varchar(255),
         team varchar(255),
-        position varchar(255)
+        position varchar(255),
     )
     `);
     }
