@@ -7,9 +7,7 @@ export class createTeamTable1607633306845 implements MigrationInterface {
      CREATE TABLE team (
         id serial,
         name varchar(255)
-       
-    )
-    `);
+    )`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

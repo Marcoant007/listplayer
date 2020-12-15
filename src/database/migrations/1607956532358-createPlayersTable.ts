@@ -13,10 +13,7 @@ export default class createPlayersTable1607627905636 implements MigrationInterfa
         position varchar(255)
     )
     `);
-
     }
-
-
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
         DROP TABLE players
