@@ -19,7 +19,7 @@ class Player {
     position: string
 
     @ManyToOne(type => Team, players => Player)
-    team: Team
+    team_id: Team
 
 }
 

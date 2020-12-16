@@ -5,7 +5,10 @@ import DeletedPlayerService from '../services/Players/DeletedPlayerService';
 import UpdatedPlayerService from '../services/Players/UpdatedPlayerService';
 import { id } from 'date-fns/locale';
 
+
+
 const playersRouter = Router();
+
 playersRouter.get('/', async (request, response) => {
     const listedPlayer = new ListedPlayerService();
     const players = await listedPlayer.execute()

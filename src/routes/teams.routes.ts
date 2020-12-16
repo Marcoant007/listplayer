@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { request, response, Router } from 'express'
 import CreatedTeamService from '../services/Teams/CreatedTeamService'
 import ListedTeamService from '../services/Teams/ListedTeamService'
 import DeletedTeamService from '../services/Teams/DeletedTeamService'
@@ -30,6 +30,27 @@ teamsRouter.post('/', async (request, response) => {
     catch (err) {
         return response.status(400).json({ error: err.message })
     }
+})
+
+teamsRouter.put('/:id', async (request, response) => {
+    const { id } = request.params
+    const { name, awards } = request.body
+    const updateTeamService = new UpdatedTeamService()
+    const teams = await updateTeamService.execute({
+        id: Number(id),
+        name: name,
+        awards: awards
+
+    })
+    return response.json(teams)
+})
+
+
+teamsRouter.delete('/:id', async (request, response) => {
+    const { id } = request.params
+    const deletedTeam = new DeletedTeamService()
+    await deletedTeam.execute({ id: +id })
+    return response.status(204).send({})
 })
 
 export default teamsRouter
