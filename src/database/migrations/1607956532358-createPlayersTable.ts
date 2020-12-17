@@ -13,8 +13,8 @@ export default class createPlayersTable1607627905636 implements MigrationInterfa
             team_id int,
             constraint pk_player primary key (id),
             constraint fk_player_team foreign key (team_id) references team(id) match simple on update no action on delete no action
-            )
-    `);
+            )`
+        );
     }
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`

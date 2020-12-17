@@ -10,6 +10,5 @@ class PlayerRepository extends Repository<Player>{
         return findPlayer || null
     }
 }
-
 export default PlayerRepository;
 

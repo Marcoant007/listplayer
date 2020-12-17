@@ -18,19 +18,19 @@ playersRouter.get('/', async (request, response) => {
 
 playersRouter.post('/', async (request, response) => {
     try {
-        const { name, age, nationality, team, position } = request.body;
+        const { name, age, nationality, team_id, position } = request.body;
         const createdPlayer = new CreatedPlayerService();
         const players = await createdPlayer.execute({
             name,
             age,
             nationality,
             position,
-
+            team_id,
         })
         console.log(name)
         console.log(age)
         console.log(nationality)
-        console.log(team)
+        console.log(team_id)
         return response.status(200).json(players)
     } catch (err) {
         return response.status(400).json({ error: err.message })

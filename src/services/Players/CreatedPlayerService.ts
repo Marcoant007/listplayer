@@ -8,10 +8,10 @@ interface Request {
     age: number,
     nationality: string,
     position: string,
-    team: number,
+    team_id: number,
 }
 class CreatedPlayerService {
-    public async execute({ name, age, nationality, position, team }: Request): Promise<Player> {
+    public async execute({ name, age, nationality, position, team_id }: Request): Promise<Player> {
         const playersRepository = getCustomRepository(PlayerRepository)
 
         const playerCreated = playersRepository.create({
@@ -19,6 +19,7 @@ class CreatedPlayerService {
             age,
             nationality,
             position,
+            team_id
 
         })
         await playersRepository.save(playerCreated)

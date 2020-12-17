@@ -18,8 +18,9 @@ class Player {
     @Column()
     position: string
 
-    @ManyToOne(type => Team, players => Player)
-    team_id: Team
+    @ManyToOne(type => Team, players => Player, { eager: true })
+    @JoinColumn({ name: "team_id" })
+    team: Team
 
 }
 
