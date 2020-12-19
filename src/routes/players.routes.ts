@@ -1,10 +1,9 @@
 import { Router } from 'express';
+
 import CreatedPlayerService from '../services/Players/CreatedPlayerService';
 import ListedPlayerService from '../services/Players/ListedPlayerService';
 import DeletedPlayerService from '../services/Players/DeletedPlayerService';
 import UpdatedPlayerService from '../services/Players/UpdatedPlayerService';
-import { id } from 'date-fns/locale';
-
 
 
 const playersRouter = Router();
@@ -15,22 +14,22 @@ playersRouter.get('/', async (request, response) => {
     return response.json(players);
 })
 
-
 playersRouter.post('/', async (request, response) => {
     try {
-        const { name, age, nationality, team_id, position } = request.body;
+        const { name, age, nationality, team_id, position_id } = request.body;
         const createdPlayer = new CreatedPlayerService();
         const players = await createdPlayer.execute({
             name,
             age,
             nationality,
-            position,
+            position_id,
             team_id,
         })
         console.log(name)
         console.log(age)
         console.log(nationality)
         console.log(team_id)
+        console.log(position_id)
         return response.status(200).json(players)
     } catch (err) {
         return response.status(400).json({ error: err.message })

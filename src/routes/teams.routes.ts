@@ -14,7 +14,6 @@ teamsRouter.get('/', async (request, response) => {
 
 })
 
-
 teamsRouter.post('/', async (request, response) => {
     try {
         const { name, awards } = request.body
@@ -44,7 +43,6 @@ teamsRouter.put('/:id', async (request, response) => {
     })
     return response.json(teams)
 })
-
 
 teamsRouter.delete('/:id', async (request, response) => {
     const { id } = request.params

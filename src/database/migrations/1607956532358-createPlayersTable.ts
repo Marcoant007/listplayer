@@ -1,6 +1,6 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner } from "typeorm";
 
-export default class createPlayersTable1607627905636 implements MigrationInterface {
+export class createTeamTable1607956532358 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
@@ -9,7 +9,6 @@ export default class createPlayersTable1607627905636 implements MigrationInterfa
             name varchar(100) not null,
             age int not null,
             nationality varchar(100) not null,
-            position varchar(100) not null,
             team_id int,
             constraint pk_player primary key (id),
             constraint fk_player_team foreign key (team_id) references team(id) match simple on update no action on delete no action
@@ -21,5 +20,4 @@ export default class createPlayersTable1607627905636 implements MigrationInterfa
         DROP TABLE players
         `);
     }
-
 }
