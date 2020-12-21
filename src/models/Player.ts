@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, Timestamp, ManyToOne, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm'
 import Team from "./Team"
 import Position from './Position'
+import PlayerPosition from './PlayerPosition';
 
 @Entity('players')
 class Player {
@@ -16,11 +17,9 @@ class Player {
     @Column()
     nationality: string;
 
-    @OneToMany(type => Player, position => Position, { eager: true })
-    player: Position[]
 
-    @OneToMany(type => Position, player => Player, { eager: true, cascade: true })
-    position: Player[]
+    @OneToMany(type => PlayerPosition, playerPosition => playerPosition.player, { eager: true, cascade: true })
+    playerPositions: PlayerPosition[];
 
     @Column('int4')
     team_id: number;

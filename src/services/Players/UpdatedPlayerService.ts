@@ -1,4 +1,5 @@
 import { getCustomRepository } from 'typeorm'
+import Player from '../../models/Player'
 import PlayerRepository from '../../repositories/PlayersRepository'
 
 interface Request {
@@ -11,15 +12,9 @@ interface Request {
 }
 
 class UpdatedPlayerService {
-    public async execute({ id, name, age, nationality, position }: Request) {
+    public async execute(player: Player) {
         const playersrespository = getCustomRepository(PlayerRepository)
-        const playersupadted = await playersrespository.save({
-            id,
-            name,
-            age,
-            nationality,
-            position,
-        })
+        const playersupadted = await playersrespository.save(player)
         return playersupadted
     }
 }

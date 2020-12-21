@@ -16,20 +16,22 @@ playersRouter.get('/', async (request, response) => {
 
 playersRouter.post('/', async (request, response) => {
     try {
-        const { name, age, nationality, team_id, position_id } = request.body;
+        const { name, age, nationality, team_id, playerPositions } = request.body;
         const createdPlayer = new CreatedPlayerService();
-        const players = await createdPlayer.execute({
-            name,
-            age,
-            nationality,
-            position_id,
-            team_id,
-        })
+        const players = await createdPlayer.execute(
+            {
+                name: name,
+                age: age,
+                nationality: nationality,
+                team_id: +team_id,
+                playerPositions: playerPositions
+            }
+        )
         console.log(name)
         console.log(age)
         console.log(nationality)
         console.log(team_id)
-        console.log(position_id)
+
         return response.status(200).json(players)
     } catch (err) {
         return response.status(400).json({ error: err.message })
@@ -38,16 +40,9 @@ playersRouter.post('/', async (request, response) => {
 
 playersRouter.put('/:id', async (request, response) => {
     const { id } = request.params
-    const { name, age, nationality, team, position } = request.body
+    const body = request.body
     const updatedPlayer = new UpdatedPlayerService();
-    const players = await updatedPlayer.execute({
-        id: Number(id),
-        name: name,
-        age: age,
-        nationality: nationality,
-        position: position,
-
-    })
+    const players = await updatedPlayer.execute(body)
     return response.json(players)
 })
 interface RouteDel {

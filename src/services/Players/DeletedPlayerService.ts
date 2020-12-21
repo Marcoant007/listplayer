@@ -8,7 +8,9 @@ interface Request {
 class DeletedPlayerService {
     public async execute({ id }: Request) {
         const playersDeleted = getCustomRepository(PlayerRepository)
-        await playersDeleted.delete({ id })
+        await playersDeleted.delete(
+            { id: id }
+        )
     }
 }
 

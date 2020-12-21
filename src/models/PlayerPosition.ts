@@ -1,10 +1,11 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm'
 import PlayerRepository from '../repositories/PlayersRepository'
-import Player, { Position } from "./Position"
+import Player from './Player'
+import Position from './Position'
 
 
 @Entity('player_has_position')
-class Player_has_position {
+class PlayerPosition {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -18,9 +19,9 @@ class Player_has_position {
     @JoinColumn({ name: "player_id" })
     player: Player
 
-    @ManyToOne(type => Position)
+    @ManyToOne(type => Position, { eager: true })
     @JoinColumn({ name: "position_id" })
     position: Position
 }
 
-export default Player_has_position
+export default PlayerPosition
