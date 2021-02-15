@@ -3,9 +3,17 @@ import CreatedPositionService from '../services/Positions/CreatedPositionService
 import ListedPositonService from '../services/Positions/ListedPositionService';
 import DeletedPositionService from '../services/Positions/DeletedPositionService';
 import UpdatedPositionService from '../services/Positions/UpdatedPositionService';
+import FindByIdPositionService from '../services/Positions/FindByIdPositionsService';
 
 
 const positionsRouter = Router()
+
+positionsRouter.get('/:id', async(request,response) => {
+    const {id} = request.params
+    const findById = new FindByIdPositionService
+    const positions = await findById.execute(+id)
+    return response.json(positions)
+})
 
 positionsRouter.get('/', async (request, response) => {
 
@@ -33,12 +41,11 @@ positionsRouter.post('/', async (request, response) => {
 
 positionsRouter.put('/:id', async (request, response) => {
     const { id } = request.params
-    const { name_position_fist, name_position_second } = request.body
+    const { name_position_first } = request.body
     const updatedPositionService = new UpdatedPositionService()
     const postion = await updatedPositionService.execute({
         id: Number(id),
-        name_position_fist: name_position_fist,
-        name_position_second: name_position_second
+        name_position_first: name_position_first,
     })
 
     return response.json(postion)

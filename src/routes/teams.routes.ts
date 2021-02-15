@@ -3,9 +3,18 @@ import CreatedTeamService from '../services/Teams/CreatedTeamService'
 import ListedTeamService from '../services/Teams/ListedTeamService'
 import DeletedTeamService from '../services/Teams/DeletedTeamService'
 import UpdatedTeamService from '../services/Teams/UpdatedTeamService'
+import FindByIdTeamService from '../services/Teams/FindByIdTeamService'
 
 
 const teamsRouter = Router()
+
+teamsRouter.get('/:id', async(request,response) => {
+    const { id } = request.params
+    const findById = new FindByIdTeamService
+    const team = await findById.execute(+id)
+    return response.json(team)
+})
+
 
 teamsRouter.get('/', async (request, response) => {
     const listTeam = new ListedTeamService();

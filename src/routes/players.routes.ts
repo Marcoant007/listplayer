@@ -45,9 +45,7 @@ playersRouter.put('/:id', async (request, response) => {
     const players = await updatedPlayer.execute(body)
     return response.json(players)
 })
-interface RouteDel {
-    id: number,
-}
+
 
 playersRouter.delete('/:id', async (request, response) => {
     const { id } = request.params
