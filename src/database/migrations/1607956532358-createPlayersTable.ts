@@ -7,6 +7,7 @@ export class createTeamTable1607956532358 implements MigrationInterface {
         create table players (
             id serial not null,
             name varchar(100) not null,
+            avatar varchar(255) default null,
             age int not null,
             nationality varchar(100) not null,
             team_id int,

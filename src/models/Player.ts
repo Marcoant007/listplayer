@@ -17,6 +17,9 @@ class Player {
     @Column()
     nationality: string;
 
+    @Column()
+    avatar: string
+
 
     @OneToMany(type => PlayerPosition, playerPosition => playerPosition.player, { eager: true, cascade: true })
     playerPositions: PlayerPosition[];

@@ -6,10 +6,11 @@ interface Request {
     age: number,
     nationality: string,
     team_id: number,
+    avatar: string,
     playerPositions: []
 }
 class CreatedPlayerService {
-    public async execute({ name, age, nationality, team_id, playerPositions }: Request): Promise<Player> {
+    public async execute({ name, age, nationality, team_id, playerPositions, avatar }: Request): Promise<Player> {
         const playersRepository = getCustomRepository(PlayerRepository)
 
         const playerCreated = playersRepository.create({
@@ -17,7 +18,9 @@ class CreatedPlayerService {
             age,
             nationality,
             team_id,
-            playerPositions
+            avatar,
+            playerPositions,
+          
         })
         await playersRepository.save(playerCreated)
         return playerCreated
