@@ -20,6 +20,23 @@ class Player {
     @Column()
     avatar: string
 
+    @Column()
+    dri: number
+
+    @Column()
+    speed: number
+
+    @Column()
+    shoting: number
+
+    @Column()
+    pass: number
+
+    @Column()
+    defense: number
+
+    @Column()
+    skill: number
 
     @OneToMany(type => PlayerPosition, playerPosition => playerPosition.player, { eager: true, cascade: true })
     playerPositions: PlayerPosition[];

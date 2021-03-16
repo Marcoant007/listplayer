@@ -26,17 +26,27 @@ playersRouter.get('/', async (request, response) => {
 
 playersRouter.post('/', multer(multerConfig).single('avatar'), async (request, response) => {
     try {
-        console.log('TESTE')
-        const { name, age, nationality, team_id, playerPositions } = request.body;
+
+        const { name, age, nationality, team_id, speed,
+            dri,
+            shoting,
+            pass,
+            defense,
+        } = request.body;
         const createdPlayer = new CreatedPlayerService();
 
         let file: any = request.file;
-        console.log(file.location);
-        
-        console.log(name);
-        console.log(age);
-        console.log(nationality);
-        console.log(team_id);
+        let defense2 = Number.parseInt(defense);
+        let dri2 = Number.parseInt(dri);
+        let pass2 = Number.parseInt(pass);
+        let shoting2 = Number.parseInt(shoting);
+        let speed2 = Number.parseInt(speed);
+
+        const result = (defense2 + dri2 + pass2 + shoting2 + speed2) / 5
+        const skill =  Math.round(result) 
+
+
+
         let avatar = file.location
         const players = await createdPlayer.execute(
             {
@@ -45,7 +55,12 @@ playersRouter.post('/', multer(multerConfig).single('avatar'), async (request, r
                 nationality: nationality,
                 team_id: +team_id,
                 avatar: avatar,
-                playerPositions: playerPositions
+                defense: +defense,
+                dri: +dri,
+                pass: +pass,
+                shoting: +shoting,
+                skill: +skill,
+                speed: +speed
             }
         )
         console.log(name)
@@ -53,6 +68,12 @@ playersRouter.post('/', multer(multerConfig).single('avatar'), async (request, r
         console.log(nationality)
         console.log(team_id)
         console.log(avatar)
+        console.log(defense)
+        console.log(dri)
+        console.log(pass)
+        console.log(shoting)
+        console.log(speed)
+        console.log(skill)
 
         return response.status(200).json(players)
     } catch (err) {
